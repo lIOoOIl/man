@@ -1,7 +1,7 @@
 # man
 # this is react-man
 
-## what i have learn from this project
+what i want to learn from this project and i will keep updating this project...
 - [x] use create-react-app
 - [x] how to export webpack config from this project
 - [ ] how to use ant-design
