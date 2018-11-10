@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './style.css'
+import './style.less'
 
 class Demo extends Component {
   constructor (props) {
@@ -23,8 +23,8 @@ class Demo extends Component {
     return (
       <div>
         <h3>this is first test for react demo</h3>
-        <button onClick = { this.plus }> first </button>
-        <button onClick = { this.dele }> second </button>
+        <button onClick = { this.plus }> plus </button>
+        <button onClick = { this.dele }> dele </button>
         <h3>{ this.state.count }</h3>
       </div>
     )
