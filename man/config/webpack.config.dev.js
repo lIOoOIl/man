@@ -49,10 +49,6 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
       options: cssOptions,
     },
     {
-      loader: require.resolve('less-loader'),
-      options: cssOptions,
-    },
-    {
       // Options for PostCSS as we reference these options twice
       // Adds vendor prefixing based on your specified browser support in
       // package.json
@@ -71,6 +67,9 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
           }),
         ],
       },
+    },
+    {
+      loader: require.resolve('less-loader'),
     },
   ];
   if (preProcessor) {
@@ -282,33 +281,27 @@ module.exports = {
           {
             test: cssRegex,
             exclude: cssModuleRegex,
-            use: getStyleLoaders({
-              importLoaders: 1,
-            }),
+            loader: 'style-loader!css-loader'
+            // use: getStyleLoaders({
+            //   importLoaders: 1,
+            // }),
           },
           // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
           // using the extension .module.css
-          // {
-          //   test: cssModuleRegex,
-          //   use: getStyleLoaders({
-          //     importLoaders: 1,
-          //     modules: true,
-          //     getLocalIdent: getCSSModuleLocalIdent,
-          //   }),
-          // },
           {
             test: cssModuleRegex,
-            use: getStyleLoaders({
-              importLoaders: 1,
-              // modules: true,
-              // getLocalIdent: getCSSModuleLocalIdent,
-            }),
+            loader: 'style-loader!css-loader?modules'
+            // use: getStyleLoaders({
+            //   importLoaders: 1,
+            //   modules: true,
+            //   getLocalIdent: getCSSModuleLocalIdent,
+            // }),
           },
 
           {
             test: lessRegex,
             exclude: lessModuleRegex,
-            use: getStyleLoaders({ importLoaders: 1 }, 'less-loader'),
+            use: getStyleLoaders({ importLoaders: 1 }),
           },
           // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
           // using the extension .module.css
@@ -319,8 +312,7 @@ module.exports = {
                 importLoaders: 1,
                 modules: true,
                 getLocalIdent: getCSSModuleLocalIdent,
-              },
-              'less-loader'
+              }
             ),
           },
 
