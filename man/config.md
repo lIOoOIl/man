@@ -1,10 +1,19 @@
+### fix import antd-css bug with this config
+```js
+  {
+    test: cssRegex,
+    exclude: cssModuleRegex,
+    loader: 'style-loader!css-loader'
+  },
+  {
+    test: cssModuleRegex,
+    loader: 'style-loader!css-loader?modules'
+  },
+```
 
-
-#### less-loader config in webpack: 
+### less-loader config in webpack: 
 1. Style files regexes
-```json
-  const cssRegex = /\.css$/;
-  const cssModuleRegex = /\.module\.css$/;
+```js
   const lessRegex = /\.less$/;
   const lessModuleRegex = /\.module\.less$/;
 ```
