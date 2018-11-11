@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './style.less'
 import { Button } from 'antd'
-
+import 'antd/dist/antd.css'
 
 class Demo extends Component {
   constructor (props) {
@@ -25,8 +25,8 @@ class Demo extends Component {
     return (
       <div>
         <h3>this is first test for react demo</h3>
-        <button onClick = { this.plus }> plus </button>
-        <button onClick = { this.dele }> dele </button>
+        <Button onClick = { this.plus }> plus </Button>
+        <Button onClick = { this.dele }> dele </Button>
         <h3>{ this.state.count }</h3>
       </div>
     )

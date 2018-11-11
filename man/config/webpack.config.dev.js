@@ -49,6 +49,10 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
       options: cssOptions,
     },
     {
+      loader: require.resolve('less-loader'),
+      options: cssOptions,
+    },
+    {
       // Options for PostCSS as we reference these options twice
       // Adds vendor prefixing based on your specified browser support in
       // package.json
@@ -67,10 +71,6 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
           }),
         ],
       },
-    },
-    {
-      loader: require.resolve('less-loader'),
-      options: cssOptions,
     },
   ];
   if (preProcessor) {
@@ -288,31 +288,40 @@ module.exports = {
           },
           // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
           // using the extension .module.css
+          // {
+          //   test: cssModuleRegex,
+          //   use: getStyleLoaders({
+          //     importLoaders: 1,
+          //     modules: true,
+          //     getLocalIdent: getCSSModuleLocalIdent,
+          //   }),
+          // },
           {
             test: cssModuleRegex,
             use: getStyleLoaders({
               importLoaders: 1,
-              modules: true,
-              getLocalIdent: getCSSModuleLocalIdent,
+              // modules: true,
+              // getLocalIdent: getCSSModuleLocalIdent,
             }),
           },
 
           {
             test: lessRegex,
             exclude: lessModuleRegex,
-            use: getStyleLoaders({
-              importLoaders: 1,
-            }),
+            use: getStyleLoaders({ importLoaders: 1 }, 'less-loader'),
           },
           // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
           // using the extension .module.css
           {
             test: lessModuleRegex,
-            use: getStyleLoaders({
-              importLoaders: 1,
-              modules: true,
-              getLocalIdent: getCSSModuleLocalIdent,
-            }),
+            use: getStyleLoaders(
+              {
+                importLoaders: 1,
+                modules: true,
+                getLocalIdent: getCSSModuleLocalIdent,
+              },
+              'less-loader'
+            ),
           },
 
           // Opt-in support for SASS (using .scss or .sass extensions).
