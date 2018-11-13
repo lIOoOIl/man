@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import './style.less'
 import { Button } from 'antd'
-// import './test.css'
-import 'antd/dist/antd.css'
+// import 'antd/dist/antd.css'
 
 class Demo extends Component {
   constructor (props) {

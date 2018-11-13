@@ -70,6 +70,12 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
     },
     {
       loader: require.resolve('less-loader'),
+      options: {
+        modules: false,
+        modifyVars: {
+          "@primary-color": "#f9c700"
+        }
+      }
     },
   ];
   if (preProcessor) {
@@ -224,8 +230,10 @@ module.exports = {
               customize: require.resolve(
                 'babel-preset-react-app/webpack-overrides'
               ),
-              
               plugins: [
+                [
+                  "import", { "libraryName": "antd", "style": true }
+                ],
                 [
                   require.resolve('babel-plugin-named-asset-import'),
                   {
