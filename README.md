@@ -6,5 +6,6 @@ what i want to learn from this project and i will keep updating this project...
 - [x] how to export webpack config from this project
 - [x] how to use ant-design
 - [x] how to use load on demand plugin
+- [x] menu construction
 - [ ] how to wrapper my own ant-design
 - [ ] how to use react-router
