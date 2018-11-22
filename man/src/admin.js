@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col } from 'antd'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Menu from './components/Menu'
+import Nav from './components/Nav'
 import './style/common.less'
 
 export default class Admin extends React.Component {
@@ -11,14 +11,14 @@ export default class Admin extends React.Component {
     return (
       <Row className='container'>
         <Col span='4' className='menu'>
-          <Menu value='this is Menu' />
+          <Nav/>
         </Col>
         <Col span='20' className='main'>
-          <Header value='this is Headers' />
+          <Header/>
           <Row className='content'>
             this is Content
           </Row>
-          <Footer value='this is Footer' />
+          <Footer/>
         </Col>
       </Row>
     )
