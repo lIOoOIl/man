@@ -1,9 +1,39 @@
 import React from 'react'
 import { Menu, Icon } from 'antd'
+import menuList from '../../config/menuConfig'
 import './index.less'
 
 const { SubMenu } = Menu
 export default class Nav extends React.Component {
+  constructor(props){
+    super(props)
+    // this.state = {
+    //   menuTreeNode: []
+    // }
+  }
+  componentWillMount(){
+    const menuTreeNode = this.renderMenu(menuList)
+    this.setState({
+      menuTreeNode
+    })
+  }
+
+  renderMenu = (data) => {
+    return data.map(item => {
+      if(item.children){
+        return (
+          <SubMenu title={item.title} key={item.key}>
+            { this.renderMenu(item.children)}
+          </SubMenu>
+        )
+      }
+      return (
+        <Menu.Item title={item.title} kety={item.key}>
+          {item.title}
+        </Menu.Item>
+      )
+    })
+  }
 
   render() {
     return (
@@ -12,14 +42,7 @@ export default class Nav extends React.Component {
           <img src='/assets/logo-ant.svg'></img>
           <h1>Man</h1>
         </div>
-        <Menu theme='dark'>
-          <SubMenu key="sub4" title={<span><Icon type="setting" /><span>Navigation Three</span></span>}>
-            <Menu.Item key="9">Option 9</Menu.Item>
-            <Menu.Item key="10">Option 10</Menu.Item>
-            <Menu.Item key="11">Option 11</Menu.Item>
-            <Menu.Item key="12">Option 12</Menu.Item>
-          </SubMenu>
-        </Menu>
+        <Menu theme='dark'>{this.state.menuTreeNode}</Menu>
       </div>
     )
   }
