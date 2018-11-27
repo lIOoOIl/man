@@ -7,9 +7,6 @@ const { SubMenu } = Menu
 export default class Nav extends React.Component {
   constructor(props){
     super(props)
-    // this.state = {
-    //   menuTreeNode: []
-    // }
   }
   componentWillMount(){
     const menuTreeNode = this.renderMenu(menuList)
