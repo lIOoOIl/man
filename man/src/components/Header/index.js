@@ -12,12 +12,22 @@ export default class Header extends React.Component {
   }
 
   componentWillMount(){
-    setInterval(() => {
+    let timer = setInterval(() => {
       let time = util.getTime(new Date())
       this.setState({
         currentTime: time
       })
     }, 500)
+    util.fetch('武汉').then(msg => {
+      this.setState({
+        currentWeather: msg.weather,
+        windpower: msg.windpower
+      })
+    })
+  }
+
+  componentWillUnmout(){
+    clearInterval('timer')
   }
 
   render() {
@@ -30,10 +40,10 @@ export default class Header extends React.Component {
           </Col>
         </Row>
         <Row className="info">
-          <Col span="2" class="header-title">首页</Col>
+          <Col span="2" className="header-title">首页</Col>
           <Col span="22">
             <span className="header-time">{this.state.currentTime}</span>
-            <span className="header-weather">多云转晴</span>
+            <span className="header-weather">{this.state.currentWeather}/风力{this.state.windpower}级</span>
           </Col>
         </Row>
       </div>
