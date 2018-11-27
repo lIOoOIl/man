@@ -1,6 +1,8 @@
 import React from 'react'
 import { Row, Col } from 'antd'
+import util from '../../utils'
 import './index.less'
+
 export default class Header extends React.Component {
   constructor(props){
     super(props)
@@ -10,7 +12,12 @@ export default class Header extends React.Component {
   }
 
   componentWillMount(){
-    
+    setInterval(() => {
+      let time = util.getTime(new Date())
+      this.setState({
+        currentTime: time
+      })
+    }, 500)
   }
 
   render() {
@@ -25,7 +32,7 @@ export default class Header extends React.Component {
         <Row className="info">
           <Col span="2" class="header-title">首页</Col>
           <Col span="22">
-            <span className="header-time">2018-11-27</span>
+            <span className="header-time">{this.state.currentTime}</span>
             <span className="header-weather">多云转晴</span>
           </Col>
         </Row>
